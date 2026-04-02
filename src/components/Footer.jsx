@@ -1,4 +1,10 @@
+import { useLanguage } from '../i18n'
+
 export default function Footer() {
+  const { t } = useLanguage()
+  const navLinks = t('footer.navLinks')
+  const navHrefs = t('footer.navHrefs')
+
   return (
     <footer className="border-t border-gold/10 bg-dark">
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -7,19 +13,18 @@ export default function Footer() {
           <div>
             <h3 className="font-heading text-3xl text-gold mb-4">Le Comptoir Doré</h3>
             <p className="text-cream/40 font-light text-sm leading-relaxed">
-              Restaurant gastronomique au cœur de Paris.
-              Une cuisine d&apos;excellence depuis 2010.
+              {t('footer.desc')}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className="text-cream/60 text-xs tracking-[0.3em] uppercase mb-6">Navigation</h4>
+            <h4 className="text-cream/60 text-xs tracking-[0.3em] uppercase mb-6">{t('footer.navTitle')}</h4>
             <ul className="space-y-3">
-              {['Philosophie', 'Menu', 'Avis', 'Contact'].map((label) => (
+              {navLinks.map((label, i) => (
                 <li key={label}>
                   <a
-                    href={`#${label.toLowerCase()}`}
+                    href={`#${navHrefs[i]}`}
                     className="text-cream/40 hover:text-gold text-sm font-light transition-colors duration-300"
                   >
                     {label}
@@ -31,7 +36,7 @@ export default function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="text-cream/60 text-xs tracking-[0.3em] uppercase mb-6">Suivez-nous</h4>
+            <h4 className="text-cream/60 text-xs tracking-[0.3em] uppercase mb-6">{t('footer.followUs')}</h4>
             <div className="flex gap-4">
               {/* Instagram */}
               <a
@@ -82,14 +87,14 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-gold/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-cream/30 text-xs font-light">
-            &copy; 2025 Le Comptoir Doré. Tous droits réservés.
+            {t('footer.rights')}
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-cream/30 hover:text-gold text-xs font-light transition-colors duration-300">
-              Mentions légales
+              {t('footer.legal')}
             </a>
             <a href="#" className="text-cream/30 hover:text-gold text-xs font-light transition-colors duration-300">
-              Politique de confidentialité
+              {t('footer.privacy')}
             </a>
           </div>
         </div>

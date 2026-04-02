@@ -1,3 +1,4 @@
+import { LanguageProvider } from './i18n'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Philosophy from './components/Philosophy'
@@ -8,14 +9,16 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-dark text-cream">
-      <Navbar />
+    <LanguageProvider>
+      <div className="min-h-screen bg-dark text-cream">
+        <Navbar />
       <Hero />
       <Philosophy />
       <Menu />
       <Reviews />
       <Contact />
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </LanguageProvider>
   )
 }

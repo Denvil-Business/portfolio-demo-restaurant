@@ -1,4 +1,8 @@
+import { useLanguage } from '../i18n'
+
 export default function Hero() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
@@ -19,29 +23,28 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl">
         <p className="hero-sub-anim font-body text-gold text-sm md:text-base tracking-[0.3em] uppercase mb-6">
-          Restaurant Gastronomique — Paris
+          {t('hero.sub')}
         </p>
         <h1 className="hero-title-anim font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-cream font-semibold leading-tight">
-          Le Comptoir
-          <span className="block text-gold italic font-medium mt-2">Doré</span>
+          {t('hero.title1')}
+          <span className="block text-gold italic font-medium mt-2">{t('hero.title2')}</span>
         </h1>
         <p className="hero-sub-anim mt-8 text-cream/60 text-base md:text-lg font-light leading-relaxed max-w-xl mx-auto">
-          Une expérience culinaire d&apos;exception, où chaque plat raconte une histoire
-          et chaque saveur éveille les sens.
+          {t('hero.desc')}
         </p>
         <div className="hero-btn-anim mt-12">
           <a
             href="#contact"
             className="inline-block px-10 py-4 bg-gold text-dark font-medium text-sm tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300"
           >
-            Réserver une table
+            {t('hero.cta')}
           </a>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <div className="hero-btn-anim absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-cream/40 text-xs tracking-widest uppercase">Découvrir</span>
+        <span className="text-cream/40 text-xs tracking-widest uppercase">{t('hero.scroll')}</span>
         <div className="w-px h-12 bg-gradient-to-b from-gold/60 to-transparent" />
       </div>
     </section>

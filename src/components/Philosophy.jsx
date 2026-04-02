@@ -1,11 +1,15 @@
+import { useLanguage } from '../i18n'
+
 export default function Philosophy() {
+  const { t } = useLanguage()
+
   return (
     <section id="philosophie" className="py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center animate-on-scroll">
-          <span className="text-gold text-sm tracking-[0.3em] uppercase">Notre histoire</span>
+          <span className="text-gold text-sm tracking-[0.3em] uppercase">{t('philosophy.label')}</span>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-cream mt-4 mb-8">
-            Notre Philosophie
+            {t('philosophy.title')}
           </h2>
         </div>
 
@@ -16,7 +20,7 @@ export default function Philosophy() {
           <div className="animate-on-scroll delay-1 overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80"
-              alt="L'art culinaire"
+              alt="The culinary art"
               className="w-full h-80 md:h-[28rem] object-cover grayscale hover:grayscale-0 transition-all duration-700"
             />
           </div>
@@ -24,15 +28,10 @@ export default function Philosophy() {
           {/* Text */}
           <div>
             <p className="animate-on-scroll delay-2 text-cream/70 text-base md:text-lg font-light leading-relaxed mb-8">
-              Au Comptoir Doré, nous croyons que la gastronomie est un art vivant.
-              Notre chef, formé dans les plus grandes maisons parisiennes, compose
-              chaque assiette comme un tableau — alliant produits d&apos;exception,
-              techniques ancestrales et créativité audacieuse.
+              {t('philosophy.p1')}
             </p>
             <p className="animate-on-scroll delay-3 text-cream/70 text-base md:text-lg font-light leading-relaxed">
-              Nos producteurs sont triés sur le volet : maraîchers d&apos;Île-de-France,
-              pêcheurs bretons, éleveurs du Pays basque. Chaque ingrédient a une
-              provenance, une histoire, un sens.
+              {t('philosophy.p2')}
             </p>
           </div>
         </div>
@@ -40,15 +39,15 @@ export default function Philosophy() {
         <div className="animate-on-scroll delay-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <span className="font-heading text-4xl text-gold">15</span>
-            <p className="text-cream/50 text-sm mt-2 tracking-wider uppercase">Années d&apos;excellence</p>
+            <p className="text-cream/50 text-sm mt-2 tracking-wider uppercase">{t('philosophy.stat1')}</p>
           </div>
           <div>
             <span className="font-heading text-4xl text-gold">2</span>
-            <p className="text-cream/50 text-sm mt-2 tracking-wider uppercase">Étoiles Michelin</p>
+            <p className="text-cream/50 text-sm mt-2 tracking-wider uppercase">{t('philosophy.stat2')}</p>
           </div>
           <div>
             <span className="font-heading text-4xl text-gold">100%</span>
-            <p className="text-cream/50 text-sm mt-2 tracking-wider uppercase">Produits français</p>
+            <p className="text-cream/50 text-sm mt-2 tracking-wider uppercase">{t('philosophy.stat3')}</p>
           </div>
         </div>
       </div>

@@ -1,22 +1,9 @@
-const reviews = [
-  {
-    name: 'Isabelle M.',
-    text: 'Une soirée inoubliable. Le menu dégustation est un véritable voyage gustatif. Le service est attentionné sans être intrusif. On ressent la passion dans chaque assiette.',
-    stars: 5,
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80',
-  },
-  {
-    name: 'François D.',
-    text: 'Le Filet Rossini revisité est probablement le meilleur plat que j\'ai dégusté à Paris. Le cadre est somptueux et l\'ambiance feutrée. Une adresse à ne pas manquer.',
-    stars: 5,
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
-  },
-  {
-    name: 'Catherine & Jean-Pierre L.',
-    text: 'Nous avons fêté nos 30 ans de mariage ici et tout était parfait. La Sphère Chocolat & Or a émerveillé toute la table. Merci pour ce moment magique.',
-    stars: 5,
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80',
-  },
+import { useLanguage } from '../i18n'
+
+const AVATARS = [
+  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
+  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80',
 ]
 
 function Stars({ count }) {
@@ -32,13 +19,16 @@ function Stars({ count }) {
 }
 
 export default function Reviews() {
+  const { t } = useLanguage()
+  const reviews = t('reviews.items').map((r, i) => ({ ...r, avatar: AVATARS[i], stars: 5 }))
+
   return (
     <section id="avis" className="py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center animate-on-scroll">
-          <span className="text-gold text-sm tracking-[0.3em] uppercase">Témoignages</span>
+          <span className="text-gold text-sm tracking-[0.3em] uppercase">{t('reviews.label')}</span>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-cream mt-4 mb-4">
-            Ce Qu&apos;en Disent Nos Hôtes
+            {t('reviews.title')}
           </h2>
           <div className="w-16 h-px bg-gold mx-auto mb-16" />
         </div>

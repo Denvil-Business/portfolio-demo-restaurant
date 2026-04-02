@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useLanguage } from '../i18n'
 
 export default function Contact() {
+  const { t } = useLanguage()
   const [submitted, setSubmitted] = useState(false)
 
   function handleSubmit(e) {
@@ -8,13 +10,15 @@ export default function Contact() {
     setSubmitted(true)
   }
 
+  const guestOptions = t('contact.guestOptions')
+
   return (
     <section id="contact" className="py-24 md:py-32 px-6 bg-dark-light">
       <div className="max-w-6xl mx-auto">
         <div className="text-center animate-on-scroll">
-          <span className="text-gold text-sm tracking-[0.3em] uppercase">Nous trouver</span>
+          <span className="text-gold text-sm tracking-[0.3em] uppercase">{t('contact.label')}</span>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-cream mt-4 mb-4">
-            Réservation & Contact
+            {t('contact.title')}
           </h2>
           <div className="w-16 h-px bg-gold mx-auto mb-16" />
         </div>
@@ -23,26 +27,24 @@ export default function Contact() {
           {/* Info */}
           <div className="animate-on-scroll delay-1 space-y-8">
             <div>
-              <h3 className="font-heading text-2xl text-gold mb-3">Adresse</h3>
+              <h3 className="font-heading text-2xl text-gold mb-3">{t('contact.address')}</h3>
               <p className="text-cream/60 font-light leading-relaxed">
                 42, Rue du Faubourg Saint-Honoré<br />
                 75008 Paris, France
               </p>
             </div>
             <div>
-              <h3 className="font-heading text-2xl text-gold mb-3">Horaires</h3>
-              <p className="text-cream/60 font-light leading-relaxed">
-                Mardi – Samedi : 19h00 – 23h00<br />
-                Dimanche : 12h00 – 14h30 (brunch)<br />
-                Lundi : Fermé
+              <h3 className="font-heading text-2xl text-gold mb-3">{t('contact.hours')}</h3>
+              <p className="text-cream/60 font-light leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
+                {t('contact.hoursText')}
               </p>
             </div>
             <div>
-              <h3 className="font-heading text-2xl text-gold mb-3">Téléphone</h3>
+              <h3 className="font-heading text-2xl text-gold mb-3">{t('contact.phone')}</h3>
               <p className="text-cream/60 font-light">+33 1 42 68 93 17</p>
             </div>
             <div>
-              <h3 className="font-heading text-2xl text-gold mb-3">Email</h3>
+              <h3 className="font-heading text-2xl text-gold mb-3">{t('contact.email')}</h3>
               <p className="text-cream/60 font-light">reservation@lecomptoirdore.fr</p>
             </div>
           </div>
@@ -52,10 +54,9 @@ export default function Contact() {
             {submitted ? (
               <div className="h-full flex items-center justify-center">
                 <div className="text-center">
-                  <span className="font-heading text-5xl text-gold">Merci</span>
-                  <p className="text-cream/60 mt-4 font-light">
-                    Votre demande a bien été envoyée.<br />
-                    Nous vous recontacterons sous 24h.
+                  <span className="font-heading text-5xl text-gold">{t('contact.thankYou')}</span>
+                  <p className="text-cream/60 mt-4 font-light" style={{ whiteSpace: 'pre-line' }}>
+                    {t('contact.thankYouSub')}
                   </p>
                 </div>
               </div>
@@ -64,7 +65,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-cream/50 text-xs tracking-widest uppercase mb-2">
-                      Nom
+                      {t('contact.nameLabel')}
                     </label>
                     <input
                       type="text"
@@ -74,7 +75,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className="block text-cream/50 text-xs tracking-widest uppercase mb-2">
-                      Email
+                      {t('contact.emailLabel')}
                     </label>
                     <input
                       type="email"
@@ -85,7 +86,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label className="block text-cream/50 text-xs tracking-widest uppercase mb-2">
-                    Date souhaitée
+                    {t('contact.dateLabel')}
                   </label>
                   <input
                     type="date"
@@ -94,34 +95,31 @@ export default function Contact() {
                 </div>
                 <div>
                   <label className="block text-cream/50 text-xs tracking-widest uppercase mb-2">
-                    Nombre de convives
+                    {t('contact.guestsLabel')}
                   </label>
                   <select
                     className="w-full bg-dark-light border-b border-gold/30 text-cream py-3 px-1 font-light focus:outline-none focus:border-gold transition-colors duration-300"
                   >
-                    <option value="2">2 personnes</option>
-                    <option value="3">3 personnes</option>
-                    <option value="4">4 personnes</option>
-                    <option value="5">5 personnes</option>
-                    <option value="6">6 personnes</option>
-                    <option value="7+">7+ personnes</option>
+                    {guestOptions.map((opt, i) => (
+                      <option key={i} value={i + 2}>{opt}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-cream/50 text-xs tracking-widest uppercase mb-2">
-                    Message
+                    {t('contact.messageLabel')}
                   </label>
                   <textarea
                     rows="4"
                     className="w-full bg-transparent border-b border-gold/30 text-cream py-3 px-1 font-light focus:outline-none focus:border-gold transition-colors duration-300 resize-none"
-                    placeholder="Allergies, occasions spéciales..."
+                    placeholder={t('contact.messagePlaceholder')}
                   />
                 </div>
                 <button
                   type="submit"
                   className="w-full py-4 bg-gold text-dark font-medium text-sm tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300 mt-4"
                 >
-                  Envoyer la demande
+                  {t('contact.submit')}
                 </button>
               </form>
             )}

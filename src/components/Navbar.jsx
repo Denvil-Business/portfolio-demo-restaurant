@@ -1,14 +1,32 @@
 import { useState } from 'react'
+import { useLanguage } from '../i18n'
 
-const links = [
-  { label: 'Philosophie', href: '#philosophie' },
-  { label: 'Menu', href: '#menu' },
-  { label: 'Avis', href: '#avis' },
-  { label: 'Contact', href: '#contact' },
-]
+function LangSwitcher() {
+  const { lang, setLang } = useLanguage()
+  return (
+    <div className="flex items-center gap-1 text-xs font-semibold tracking-widest">
+      <button
+        onClick={() => setLang('fr')}
+        className={`transition-colors duration-200 ${lang === 'fr' ? 'text-gold' : 'text-cream/40 hover:text-gold'}`}
+      >
+        FR
+      </button>
+      <span className="text-gold/30">|</span>
+      <button
+        onClick={() => setLang('en')}
+        className={`transition-colors duration-200 ${lang === 'en' ? 'text-gold' : 'text-cream/40 hover:text-gold'}`}
+      >
+        EN
+      </button>
+    </div>
+  )
+}
 
 export default function Navbar() {
+  const { t } = useLanguage()
   const [open, setOpen] = useState(false)
+
+  const links = t('nav.links').map((label, i) => ({ label, href: t('nav.hrefs')[i] }))
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-dark/80 backdrop-blur-md border-b border-gold/20">
@@ -32,8 +50,9 @@ export default function Navbar() {
             href="#contact"
             className="ml-4 px-6 py-2 border border-gold text-gold text-sm tracking-widest uppercase hover:bg-gold hover:text-dark transition-all duration-300"
           >
-            Réserver
+            {t('nav.cta')}
           </a>
+          <LangSwitcher />
         </div>
 
         {/* Mobile hamburger */}
@@ -49,7 +68,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden overflow-hidden transition-all duration-500 ${open ? 'max-h-80' : 'max-h-0'}`}>
+      <div className={`md:hidden overflow-hidden transition-all duration-500 ${open ? 'max-h-96' : 'max-h-0'}`}>
         <div className="px-6 pb-6 flex flex-col gap-4">
           {links.map((l) => (
             <a
@@ -66,8 +85,11 @@ export default function Navbar() {
             onClick={() => setOpen(false)}
             className="mt-2 px-6 py-3 border border-gold text-gold text-sm tracking-widest uppercase text-center hover:bg-gold hover:text-dark transition-all duration-300"
           >
-            Réserver
+            {t('nav.cta')}
           </a>
+          <div className="pt-2">
+            <LangSwitcher />
+          </div>
         </div>
       </div>
     </nav>
