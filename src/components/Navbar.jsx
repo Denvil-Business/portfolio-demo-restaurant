@@ -4,17 +4,16 @@ import { useLanguage } from '../i18n'
 function LangSwitcher() {
   const { lang, setLang } = useLanguage()
   return (
-    <div className="flex items-center gap-1 text-xs font-semibold tracking-widest">
+    <div className="flex items-center rounded border border-gold/40 overflow-hidden text-xs font-semibold tracking-widest">
       <button
         onClick={() => setLang('fr')}
-        className={`transition-colors duration-200 ${lang === 'fr' ? 'text-gold' : 'text-cream/40 hover:text-gold'}`}
+        className={`px-2.5 py-1 transition-colors duration-200 ${lang === 'fr' ? 'bg-gold text-dark' : 'text-gold/60 hover:text-gold'}`}
       >
         FR
       </button>
-      <span className="text-gold/30">|</span>
       <button
         onClick={() => setLang('en')}
-        className={`transition-colors duration-200 ${lang === 'en' ? 'text-gold' : 'text-cream/40 hover:text-gold'}`}
+        className={`px-2.5 py-1 transition-colors duration-200 ${lang === 'en' ? 'bg-gold text-dark' : 'text-gold/60 hover:text-gold'}`}
       >
         EN
       </button>
